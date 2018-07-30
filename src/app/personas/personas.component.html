@@ -1,10 +1,10 @@
 <h2>Personas <a routerLink='/add/persona'>Add</a></h2>
-
+<input type="text" [(ngModel)]='searchString' />
 <ul class='personas'>
-  <li *ngFor='let persona of personas' (click)='selectPersona(persona)'>
+  <li *ngFor='let persona of personas | personaFilter: searchString' (click)='selectPersona(persona)'>
       <a routerLink='/questions/{{persona.type.type}}'><span class='badge'>{{persona.arcana}}</span> {{persona.name}}</a>
   </li>
 </ul>
 <div *ngIf='selectedPersona'>
-  <app-persona-detail [persona]="selectedPersona"></app-persona-detail>
+  <app-persona-detail [persona]="selectedPersona" [edit]='false'></app-persona-detail>
 </div>

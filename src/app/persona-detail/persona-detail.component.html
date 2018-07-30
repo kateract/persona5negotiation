@@ -1,27 +1,29 @@
-<h2>{{persona.name | uppercase}}</h2>
+<h2>{{persona.name ? persona.name : "&lt;new-persona&gt;" | uppercase}}</h2>
 <div>
   <label>Name:
-    <input [(ngModel)]="persona.name" placeholder="name">
+    <input *ngIf='edit' [(ngModel)]="persona.name" placeholder="name">
+    <span *ngIf='!edit'>{{persona.name}} <a routerLink='edit/persona/{{persona.id}}'>Edit</a></span>
   </label>
 </div>
 <div>
   <label>Code Name:
-    <input [(ngModel)]='persona.codeName' placeholder="codeName" />
+    <input *ngIf='edit' [(ngModel)]='persona.codeName' placeholder="codeName" />
+    <span *ngIf='!edit'>{{persona.codeName}}</span>
   </label>
 </div>
-<div><span>TypeName: </span>{{persona.type.type}}</div>
 <div>
   <label>Type:
-    <select>
-      <option *ngFor='let type of PersonaTypes.values();' [selected]='type === persona.type' [value]='type'>{{type}}</option>
+    <select *ngIf='edit' [(ngModel)]='persona.type.type'>
+      <option *ngFor='let type of PersonaTypes.values();' [ngValue]='type'>{{type}}</option>
     </select>
+    <span *ngIf='!edit'>{{persona.type.type}}</span>
   </label>
 </div>
 <div>
   <label>Arcana:
-    <select>
-      <option *ngFor='let arcana of Arcanas.values();' [selected]='arcana === persona.arcana' [value]='arcana'>{{arcana}}</option>
-
+    <span *ngIf='!edit'>{{persona.arcana}}</span>
+    <select *ngIf='edit' [(ngModel)]='persona.arcana'>
+      <option *ngFor='let arcana of Arcanas.values();' [ngValue]='arcana'>{{arcana}}</option>
     </select>
   </label>
 </div>

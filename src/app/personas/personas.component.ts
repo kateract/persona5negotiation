@@ -11,6 +11,7 @@ import { PersonaService } from '../persona.service';
 export class PersonasComponent implements OnInit {
   personas: Persona[];
   selectedPersona: Persona;
+  searchString: string;
   constructor(private personaService: PersonaService) { }
 
   ngOnInit() {

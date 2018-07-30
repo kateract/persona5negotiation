@@ -1,7 +1,7 @@
 <h2>Questions <a routerLink='/add/question'>Add</a></h2>
 <label>Search: <input type="text" [(ngModel)]='this.searchString' (onChange)='this.filter(this.searchString)' >  </label>
 <ul>
-  <li class='question' *ngFor='let question of questions | filter : searchString'>{{question.text}}
+  <li class='question' *ngFor='let question of questions | questionFilter : searchString'>{{question.text}}
   <ul>
     <li class='answer' *ngFor='let answer of question.answers'><div [class]='getClass(answer.type)'>{{answer.text}}
     <select>

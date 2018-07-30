@@ -1,8 +1,8 @@
-import { FilterPipe } from './filter.pipe';
+import { QuestionFilterPipe } from './question-filter.pipe';
 
 describe('FilterPipe', () => {
   it('create an instance', () => {
-    const pipe = new FilterPipe();
+    const pipe = new QuestionFilterPipe();
     expect(pipe).toBeTruthy();
   });
 });

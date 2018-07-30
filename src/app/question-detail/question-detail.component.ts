@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { QuestionService } from '../question.service';
+import { Question } from '../question';
+
 
 @Component({
   selector: 'app-question-detail',
@@ -7,7 +9,8 @@ import { QuestionService } from '../question.service';
   styleUrls: ['./question-detail.component.css']
 })
 export class QuestionDetailComponent implements OnInit {
-
+  @Input() edit: boolean;
+  @Input() question: Question;
   constructor(private questionService: QuestionService) { }
 
   ngOnInit() {

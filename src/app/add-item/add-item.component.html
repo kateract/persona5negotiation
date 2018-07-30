@@ -1,4 +1,4 @@
-<div *ngIf="type === 'persona'"><app-persona-detail></app-persona-detail></div>
-<div *ngIf="type === 'question'"><app-question-detail></app-question-detail></div>
+<div *ngIf="type === 'persona'"><app-persona-detail [edit]='true'></app-persona-detail></div>
+<div *ngIf="type === 'question'"><app-question-detail [edit]='true'></app-question-detail></div>
 <button (click)='add()'>Add</button><button (click)='cancel()'>Cancel</button>
 

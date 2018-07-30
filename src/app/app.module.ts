@@ -11,7 +11,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { QuestionsComponent } from './questions/questions.component';
 import { AddItemComponent } from './add-item/add-item.component';
 import { QuestionDetailComponent } from './question-detail/question-detail.component';
-import { FilterPipe } from './filter.pipe';
+import { QuestionFilterPipe } from './question-filter.pipe';
+import { EditItemComponent } from './edit-item/edit-item.component';
+import { PersonaFilterPipe } from './persona-filter.pipe';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { FilterPipe } from './filter.pipe';
     QuestionsComponent,
     AddItemComponent,
     QuestionDetailComponent,
-    FilterPipe,
+    QuestionFilterPipe,
+    EditItemComponent,
+    PersonaFilterPipe,
   ],
   imports: [
     BrowserModule,

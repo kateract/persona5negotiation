@@ -1,0 +1,19 @@
+li.question {
+  color: black;
+  font-weight: bold;
+  list-style: none;
+}
+li.answer {
+  font-weight: normal;
+}
+.like {
+  color: green;
+}
+
+.dislike {
+  color: red;
+}
+
+.neutral {
+  color: black;
+}

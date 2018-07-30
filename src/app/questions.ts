@@ -1,6 +1,6 @@
 import { Question, Answer } from './question';
 import { AnswerTypes } from './typeDefs';
-import { typeofExpr } from '../../node_modules/@angular/compiler/src/output/output_ast';
+import { typeofExpr } from '@angular/compiler/src/output/output_ast';
 
 export const QUESTIONS: Question[] = [
   {

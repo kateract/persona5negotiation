@@ -1,0 +1,27 @@
+<h2>{{persona.name | uppercase}}</h2>
+<div>
+  <label>Name:
+    <input [(ngModel)]="persona.name" placeholder="name">
+  </label>
+</div>
+<div>
+  <label>Code Name:
+    <input [(ngModel)]='persona.codeName' placeholder="codeName" />
+  </label>
+</div>
+<div><span>TypeName: </span>{{persona.type.type}}</div>
+<div>
+  <label>Type:
+    <select>
+      <option *ngFor='let type of PersonaTypes.values();' [selected]='type === persona.type' [value]='type'>{{type}}</option>
+    </select>
+  </label>
+</div>
+<div>
+  <label>Arcana:
+    <select>
+      <option *ngFor='let arcana of Arcanas.values();' [selected]='arcana === persona.arcana' [value]='arcana'>{{arcana}}</option>
+
+    </select>
+  </label>
+</div>

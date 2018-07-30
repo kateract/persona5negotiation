@@ -3,7 +3,6 @@ import { Persona } from './persona';
 import { PERSONAS } from './personas';
 import { Observable, of } from 'rxjs';
 import { MessageService } from './message.service';
-import * as Datastore from 'nedb';
 
 @Injectable({
   providedIn: 'root'

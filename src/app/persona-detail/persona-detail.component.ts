@@ -21,13 +21,13 @@ export class PersonaDetailComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.route.paramMap.subscribe(map => {
-      this.id = parseInt(map.get('id'), 10);
-      this.personaService.getPersona(this.id).subscribe(persona => {
-        this.persona = persona;
-      });
-    });
     if (!this.persona) {
+      this.route.paramMap.subscribe(map => {
+        this.id = parseInt(map.get('id'), 10);
+        this.personaService.getPersona(this.id).subscribe(persona => {
+          this.persona = persona;
+        });
+      });
       if (this.id > 0) {
         this.personaService.getPersona(this.id)
           .subscribe(persona => this.persona = persona);

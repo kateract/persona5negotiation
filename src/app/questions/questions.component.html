@@ -1,16 +1,26 @@
-<div class="questions-content">
-  <ul>
-    <li class='question' *ngFor='let question of questions | questionFilter : searchString'>{{question.text}}
-      <ol>
-        <li class='answer' *ngFor='let answer of question.answers'>
-          <div [class]='getClass(answer.type)'>{{answer.text}}
-            <select>
-              <option></option>
-              <option *ngFor='let atype of AnswerTypes.values()' [selected]='answer.type === atype' [value]='type'>{{atype}}</option>
-            </select>
-          </div>
-        </li>
-      </ol>
-    </li>
-  </ul>
+<div class="content">
+  <questions-header>
+    <h2>Questions
+        <a routerLink='/add/question'>Add</a>
+    </h2>
+    <label>Search:
+        <input type="text" [(ngModel)]='this.searchString' (onChange)='this.filter(this.searchString)'>
+    </label>
+  </questions-header>
+  <questions-content>
+    <ul>
+      <li class='question' *ngFor='let question of questions | questionFilter : searchString'>{{question.text}}
+        <ol>
+          <li class='answer' *ngFor='let answer of question.answers'>
+            <div [class]='getClass(answer.type)'>{{answer.text}}
+              <select>
+                <option></option>
+                <option *ngFor='let atype of AnswerTypes.values()' [selected]='answer.type === atype' [value]='type'>{{atype}}</option>
+              </select>
+            </div>
+          </li>
+        </ol>
+      </li>
+    </ul>
+  </questions-content>
 </div>

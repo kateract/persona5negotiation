@@ -1,6 +1,11 @@
 /* personasComponent's private CSS styles */
+h2 {
+  font-size: 1.2em;
+  margin-top: 0;
+  padding-top: 0;
+}
+
 .personas {
-  margin: 0 0 2em 0;
   list-style-type: none;
   padding: 0;
   width: 100%;
@@ -48,4 +53,21 @@
   text-align: right;
   margin-right: .8em;
   border-radius: 4px 0 0 4px;
+}
+
+main {
+  display: grid;
+  grid-template-areas:
+    "ptitle"
+    "pcontent";
+  grid-template-rows: 80px 1fr;
+  height: 100%
+}
+
+personas-header {
+  grid-area: ptitle;
+}
+personas-content {
+  grid-area: pcontent;
+  overflow: auto;
 }

@@ -1,3 +1,8 @@
+h2 {
+  font-size: 1.2em;
+  margin-top: 0;
+  padding-top: 0;
+}
 li.question {
   padding-top: 1em;
   color: black;
@@ -19,3 +24,19 @@ li.answer {
   color: black;
 }
 
+.content {
+  display: grid;
+  grid-template-areas:
+    "title"
+    "content";
+  grid-template-rows: 80px 1fr;
+  height: 100%
+}
+
+questions-header {
+  grid-area: title;
+}
+questions-content {
+  grid-area: content;
+  overflow: auto;
+}

@@ -1,7 +1,7 @@
 /* AppComponent's private CSS styles */
 h1 {
   font-size: 1.4em;
-  color: #999;
+  color: white;
   margin-bottom: 0;
 }
 h2 {
@@ -28,52 +28,56 @@ nav a.active {
   color: #039be5;
 }
 
-
 .container {
   display: grid;
-  grid-template-columns: 300px 1fr;
-  grid-template-rows: 40px 40px 40px 300px 80px 1fr 30px;
+  grid-template-areas:
+  "header header"
+  "types-content questions-content"
+  "personas-content questions-content"
+  "footer footer";
+  grid-template-columns: calc(1em + 300px) 1fr;
+  grid-template-rows: 50px 400px 1fr 30px;
   grid-gap: 10px;
-  height: calc(100vh - 2em);
+  height: calc(100vh);
 }
-.title {
-  grid-column-start: 1;
-  grid-column-end: 3;
-}
-.types-title {
-  grid-column: 1;
-  grid-row: 2;
-}
-.types-content {
-  grid-column: 1;
-  grid-row-start: 3;
-  grid-row-end: 5;
-}
-.personas-title {
-  grid-column: 1;
-  grid-row: 5;
-}
-.personas-content{
-  grid-column: 1;
-  grid-row: 6;
-  overflow: auto;
-}
-.questions-title {
-  grid-column: 2;
-  grid-row-start: 2;
-  grid-row-end: 4;
-}
-.questions-content {
-  grid-column: 2;
-  grid-row-start: 4;
-  grid-row-end: 7;
-  overflow: auto;
-}
-.footer {
-  grid-column-start: 1;
-  grid-column-end: 3;
-  grid-row: 7;
-}
-@media (max-width: 500px) {
 
+header {
+  grid-area: header;
+  background-color: #607d8b;
+  padding-left: 1em;
+}
+types-content {
+  padding-left: 1em;
+  grid-area: types-content;
+}
+personas-content{
+  padding-left: 1em;
+  grid-area: personas-content;
+  overflow: auto;
+}
+questions-content {
+  grid-area: questions-content;
+  /* overflow: auto; */
+}
+footer {
+  padding-left: 1em;
+  padding-top: 8px;
+  grid-area: footer;
+  background-color: #607d8b;
+  color: #eeeeee;
+}
+
+
+@media (max-width: 500px) {
+  .container {
+    grid-template-areas:
+      "header"
+      "types-content"
+      "personas-content"
+      "questions-content"
+      "footer";
+    grid-template-rows: auto auto auto auto auto;
+    height: unset;
+
+  }
 }

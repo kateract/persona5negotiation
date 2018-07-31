@@ -19,4 +19,7 @@ export class QuestionDetailComponent implements OnInit {
   add(): void  {
 
   }
+  save(): void {
+
+  }
 }

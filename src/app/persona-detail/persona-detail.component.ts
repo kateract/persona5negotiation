@@ -41,4 +41,7 @@ export class PersonaDetailComponent implements OnInit {
   public add(): void {
     this.personaService.addPersona(this.persona);
   }
+  public save(): void {
+    this.personaService.editPersona(this.persona);
+  }
 }

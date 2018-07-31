@@ -1,11 +1,11 @@
 /* AppComponent's private CSS styles */
 h1 {
-  font-size: 1.2em;
+  font-size: 1.4em;
   color: #999;
   margin-bottom: 0;
 }
 h2 {
-  font-size: 2em;
+  font-size: 1.2em;
   margin-top: 0;
   padding-top: 0;
 }
@@ -31,26 +31,49 @@ nav a.active {
 
 .container {
   display: grid;
-  grid-template-columns: 150px, auto;
+  grid-template-columns: 300px 1fr;
+  grid-template-rows: 40px 40px 40px 300px 80px 1fr 30px;
+  grid-gap: 10px;
+  height: calc(100vh - 2em);
 }
-
-.types {
+.title {
   grid-column-start: 1;
-  grid-column-end: 2;
-  grid-row-start: 1;
-  grid-row-end: 2;
-}
-
-.personas {
-  grid-column-start: 1;
-  grid-column-end: 2;
-  grid-row-start: 2;
-  grid-row-end: 3
-}
-
-.questions {
-  grid-column-start: 2;
   grid-column-end: 3;
-  grid-row-start: 1;
-  grid-row-end: 3;
+}
+.types-title {
+  grid-column: 1;
+  grid-row: 2;
+}
+.types-content {
+  grid-column: 1;
+  grid-row-start: 3;
+  grid-row-end: 5;
+}
+.personas-title {
+  grid-column: 1;
+  grid-row: 5;
+}
+.personas-content{
+  grid-column: 1;
+  grid-row: 6;
+  overflow: auto;
+}
+.questions-title {
+  grid-column: 2;
+  grid-row-start: 2;
+  grid-row-end: 4;
+}
+.questions-content {
+  grid-column: 2;
+  grid-row-start: 4;
+  grid-row-end: 7;
+  overflow: auto;
+}
+.footer {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row: 7;
+}
+@media (max-width: 500px) {
+
 }

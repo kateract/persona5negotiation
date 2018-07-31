@@ -1,6 +1,28 @@
-<h1>{{ title }}</h1>
 <div class='container'>
-  <div class="types"><app-dashboard></app-dashboard></div>
-  <div class="personas"><app-personas></app-personas></div>
-  <div class="questions"><router-outlet></router-outlet></div>
+  <div class="title"><h1>{{ title }}</h1></div>
+  <div class='types-title'>
+      <h2>Persona Types</h2>
+  </div>
+  <div class="types-content">
+    <app-dashboard></app-dashboard>
+  </div>
+  <div class='personas-title'>
+      <h2>Personas <a routerLink='/add/persona'>Add</a></h2>
+      <input type="text" [(ngModel)]='searchString' />
+  </div>
+  <div class='personas-content'>
+    <app-personas></app-personas>
+  </div>
+  <div class="questions-title">
+      <h2>Questions
+        <a routerLink='/add/question'>Add</a>
+      </h2>
+      <label>Search:
+        <input type="text" [(ngModel)]='this.searchString' (onChange)='this.filter(this.searchString)'>
+      </label>
+  </div>
+  <div class="questions-content">
+    <router-outlet></router-outlet>
+  </div>
+  <div class="footer">© 2018 Kateract</div>
 </div>

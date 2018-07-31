@@ -1,0 +1,325 @@
+import { Question, Answer } from './question';
+import { AnswerTypes } from './typeDefs';
+import { typeofExpr } from '@angular/compiler/src/output/output_ast';
+
+export const QUESTIONS: Question[] = [
+  {
+    text: 'But I\'ve been around the block so I know--there\'s something else you want from me, isn\'t there?',
+    answers: [
+      {
+        text: 'I\'m acting on a whim.',
+        type: null
+      },
+      {
+        text: 'I love the elderly.',
+        type: null
+      },
+      {
+        text: 'I just want you to die happy.',
+        type: AnswerTypes.Vague
+      }
+    ]
+  },
+  {
+    text: 'After confronting me like this... Are you that kind of human too?',
+    answers: [
+      {
+        text: 'That\'s not my style.',
+        type: null
+      },
+      {
+        text: 'You\'ve got a point…',
+        type: null
+      },
+      {
+        text: 'What\'s wrong with that?',
+        type: AnswerTypes.Vague
+      }
+    ]
+  },
+  {
+    text: 'A bad rep spreads like wildfire. If I were you, I\'d quit this nonsense. What’s the point?',
+    answers: [
+      {
+        text: 'You\'re right.',
+        type: null
+      },
+      {
+        text: 'I don\'t care.',
+        type: null
+      },
+      {
+        text: 'I don\'t know any other way.',
+        type: AnswerTypes.Vague
+      }
+    ]
+  },
+  {
+    text: 'Hey, sonny, if somethin\'s been botherin\' you, I\'m willin\' ta give you a listen.',
+    answers: [
+      {
+        text: 'My relationships...',
+        type: AnswerTypes.Serious
+      },
+      {
+        text: 'My future...',
+        type: null
+      },
+      {
+        text: 'I have no worries.',
+        type: null
+      }
+    ]
+  },
+  {
+    text: '...You’ve come from some other company to scout me-hee out. There’s no mistaking it, ho!',
+    answers: [
+      {
+        text: 'You got me',
+        type: null
+      },
+      {
+        text: 'It’s a misunderstanding.',
+        type: null
+      },
+      {
+        text: 'I’ve come to finish you off.',
+        type: null
+      }
+    ]
+  },
+  {
+    text: 'How can you do such terrible things to a cute hee-ho like me!?',
+    answers: [
+      {
+        text: 'I’m sorry.',
+        type: null
+      },
+      {
+        text: 'Now that you mention it… ♪',
+        type: null
+      },
+      {
+        text: '...Cute?',
+        type: null
+      }
+    ]
+  },
+  {
+    text: 'You new? Did you just get hee-hired, ho?',
+    answers: [
+      {
+        text: 'No.',
+        type: null
+      },
+      {
+        text: 'I’m a transfer student.',
+        type: null
+      },
+      {
+        text: 'Yeah! Nice to meetcha!',
+        type: null
+      }
+    ]
+  },
+  {
+    text: 'Maybe I should try something new! I don’t want to fall into mediocrity, ho...',
+    answers: [
+      { text: 'You’re fine as is.', type: null },
+      { text: 'Your act is a bit stale...', type: null },
+      { text: 'Time for a makeover.', type: null }
+    ]
+  },
+  {
+    text: 'Which is it, ho?',
+    answers: [
+      { text: 'I want an autograph.', type: null },
+      { text: 'I want a photo.', type: null },
+      { text: 'Give me your credit card.', type: null }
+    ]
+  },
+  {
+    text: 'My chest is beating so fast. What is this feeling?',
+    answers: [
+      { text: 'Are you alright?', type: null },
+      { text: 'You’re making it up.', type: null },
+      { text: 'It’s love.', type: null }
+    ]
+  },
+  {
+    text: 'A mascot\'s life isn’t hee-easy. Are you sure you could handle all the adversity, ho?',
+    answers: [
+      { text: 'I’m ready for it', type: null },
+      { text: 'What kind of adversity?', type: null },
+      { text: 'You’re a mascot?', type: null }
+    ]
+  },
+  {
+    text: 'Where should I go? I want something yummy, ho!',
+    answers: [
+      { text: 'A place with no wait', type: null },
+      { text: 'A place with western toilets', type: null },
+      { text: 'You won’t survive', type: null }
+    ]
+  },
+  {
+    text: '...You’ve come from some other company to scout me-hee out. There’s no mistaking it, ho!',
+    answers: [
+      { text: 'You got me', type: null },
+      { text: 'It’s a misunderstanding.', type: null },
+      { text: 'I’ve come to finish you off.', type: null }
+    ]
+  },
+  {
+    text: 'I can’t sadden my fans, ho. You catch my drift, don’t you?',
+    answers: [
+      { text: 'I’m rooting for you.', type: null },
+      { text: 'Tell me.', type: null },
+      { text: 'You have no fans.', type: null }
+    ]
+  },
+  {
+    text: 'How did you find out about me, ho?',
+    answers: [
+      { text: 'Some flyers', type: null },
+      { text: 'A specialty site', type: null },
+      { text: 'Word of mouth', type: null }
+    ]
+  },
+  {
+    text: 'I’m busy, ho. It’s tough being so popular.',
+    answers: [
+      { text: 'You do sound busy.', type: null },
+      { text: 'Your popularity won’t last.', type: null },
+      { text: 'Who cares?', type: null }
+    ]
+  },
+  {
+    text: 'Humans always want either an autograph or selfie, ho. Which one is it, ho?',
+    answers: [
+      { text: 'I want an autograph', type: null },
+      { text: 'I want a photo', type: null },
+      { text: 'Give me your credit card', type: null }
+    ]
+  },
+  {
+    text: 'My only choice now… is to retire, ho.',
+    answers: [
+      { text: 'That’s too far.', type: null },
+      { text: 'What are your plans?', type: null },
+      { text: 'You had a good run…', type: null }
+    ]
+  },
+  {
+    text: 'You’re showing off your strength to me, aren’t you? I total-hee read your mind, ho',
+    answers: [
+      { text: 'You’re misunderstanding', type: null },
+      { text: 'The hell are you saying?', type: null },
+      { text: 'Make me you apprentice', type: null }
+    ]
+  },
+  {
+    text: 'Hey, how about this? If you don’t shoot me, then I’ll kiss you. Not a bad deal, right?',
+    answers: [
+      { text: 'Not a bad idea.', type: null },
+      { text: 'I don’t want a kiss.', type: null },
+      { text: 'Have some self-respect.', type: null }
+    ]
+  },
+  {
+    text: 'My horoscope said I was going to have relationship troubles today.',
+    answers: [
+      { text: 'Looks like it came true', type: null },
+      { text: 'It’s just a horoscope', type: null },
+      { text: 'How is your luck in romance?', type: null }
+    ]
+  },
+  {
+    text: 'Is it because I’m not acting mature enough? Like, what the heck makes someone mature, anyway?',
+    answers: [
+      { text: 'Being old enough to drink.', type: null },
+      { text: 'Paying your own rent.', type: null },
+      { text: 'Questioning maturity.', type: null }
+    ]
+  },
+  {
+    text: '[…] Under your mask… you’re actually handsome.',
+    answers: [
+      { text: 'Not at all.', type: null },
+      { text: 'How did you know?', type: null },
+      { text: 'I look OK, I guess.', type: null }
+    ]
+  },
+  {
+    text: 'It’s no fun going home when only my annoying mom and dad are there.',
+    answers: [
+      { text: 'Parents are annoying.', type: null },
+      { text: 'You should love your parents.', type: null },
+      { text: 'Make sure you go home.', type: null }
+    ]
+  },
+  {
+    text: 'Ooh, what if this leaves a scar and it’s permanent?',
+    answers: [
+      { text: 'Sorry…', type: null },
+      { text: 'Just get plastic surgery.', type: null },
+      { text: 'I’ll take responsibility.', type: null }
+    ]
+  },
+  {
+    text: 'We’ll just say you win. So can we stop this?',
+    answers: [
+      { text: 'I feel bad.', type: null },
+      { text: 'I don’t agree with this.', type: null },
+      { text: 'We can say you won.', type: null }
+    ]
+  },
+  {
+    text: 'Hey mister, if I grew up, what do you think the future me would’ve been like?',
+    answers: [
+      { text: 'A fashionable older woman.', type: null },
+      { text: 'A wealthy housewife.', type: null },
+      { text: 'Living in darkness.', type: null }
+    ]
+  },
+  {
+    text: 'Do you have a lot of friends? Ever feel like things they do are annoying?',
+    answers: [
+      { text: 'Sometimes.', type: null },
+      { text: 'No.', type: null },
+      { text: 'I have no friends.', type: null }
+    ]
+  },
+  {
+    text: 'Can we take a break and go eat somewhere?',
+    answers: [
+      { text: 'What do you want to eat?', type: null },
+      { text: 'If we split the cost.', type: null },
+      { text: 'I’m on a diet.', type: null }
+    ]
+  },
+  {
+    text: 'Are there only men’s? Where did you get it?',
+    answers: [
+      { text: 'A thrift shop', type: null },
+      { text: 'Internet shopping', type: null },
+      { text: 'It’s not available for sale', type: null }
+    ]
+  },
+  {
+    text: 'What should I wear?',
+    answers: [
+      { text: 'A High School Outfit', type: null },
+      { text: 'A Kimono', type: null },
+      { text: 'Don’t wear anything', type: null }
+    ]
+  },
+  // {
+  //   text: '',
+  //   answers: [
+  //     { text: '', type: null },
+  //     { text: '', type: null },
+  //     { text: '', type: null }
+  //   ]
+  // },
+];

@@ -22,12 +22,12 @@ export class EditItemComponent implements OnInit {
     this.route.paramMap.subscribe(map => this.type = map.get('type'));
   }
 
-  add(): void {
+  save(): void {
     if (this.type === 'question') {
-      this.questionDetailComponent.add();
+      this.questionDetailComponent.save();
     }
     if (this.type === 'persona') {
-      this.personaDetailComponent.add();
+      this.personaDetailComponent.save();
     }
   }
 

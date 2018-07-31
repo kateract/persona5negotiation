@@ -7,10 +7,19 @@ import { Observable, of } from 'rxjs';
   providedIn: 'root'
 })
 export class QuestionService {
-
+  private questions: Question[] = QUESTIONS;
   constructor() { }
 
   getQuestions(): Observable<Question[]> {
-    return of(QUESTIONS);
+    return of(this.questions);
+  }
+
+  add(question: Question): void {
+    this.questions.push(question);
+  }
+
+  save(question: Question): void {
+    this.questions.splice(this.questions.findIndex(q => q.id === question.id), 1);
+    this.questions.push(question);
   }
 }

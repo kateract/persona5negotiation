@@ -28,8 +28,9 @@ export class QuestionsComponent implements OnInit {
     this.getQuestions();
     this.route.paramMap.subscribe(map => {
       this.type = map.get('type');
-      this.personaType = new PersonaType(PersonaTypes[this.type]);
-
+      if (this.type) {
+        this.personaType = new PersonaType(PersonaTypes[this.type]);
+      }
     });
   }
   filter(string) {

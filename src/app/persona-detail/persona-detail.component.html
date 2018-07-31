@@ -1,5 +1,8 @@
 <h2>{{persona.name ? persona.name : "&lt;new-persona&gt;" | uppercase}}</h2>
 <div>
+  <label>Id: {{persona.id}}</label>
+</div>
+<div>
   <label>Name:
     <input *ngIf='edit' [(ngModel)]="persona.name" placeholder="name">
     <span *ngIf='!edit'>{{persona.name}} <a routerLink='edit/persona/{{persona.id}}'>Edit</a></span>

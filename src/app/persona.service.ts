@@ -21,8 +21,13 @@ export class PersonaService {
 
   addPersona(persona: Persona): void {
     let id = 0;
-    this.personas.map(p => p.id).reduce(p => id = id > p ? id : p);
-    persona.id = id;
+    id = this.personas.map(p => p.id).reduce((a, b) => a > b ? a : b);
+    persona.id = id + 1;
+    this.personas.push(persona);
+  }
+
+  editPersona(persona: Persona): void {
+    this.personas.splice(this.personas.findIndex(p => p.id === persona.id), 1);
     this.personas.push(persona);
   }
 

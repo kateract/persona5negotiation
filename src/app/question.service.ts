@@ -14,6 +14,10 @@ export class QuestionService {
     return of(this.questions);
   }
 
+  getQuestion(id: number): Observable<Question> {
+    return of(this.questions.find(q => q.id === id));
+  }
+
   add(question: Question): void {
     this.questions.push(question);
   }

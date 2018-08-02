@@ -1,5 +1,6 @@
 import { Input, Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
 import { PersonaDetailComponent } from '../persona-detail/persona-detail.component';
 import { QuestionDetailComponent } from '../question-detail/question-detail.component';
 
@@ -14,7 +15,10 @@ export class AddItemComponent implements OnInit {
   private personaDetailComponent: PersonaDetailComponent;
   @ViewChild(QuestionDetailComponent)
   private questionDetailComponent: QuestionDetailComponent;
-  constructor(private route: ActivatedRoute) { }
+  constructor(
+    private route: ActivatedRoute,
+    private location: Location
+  ) { }
 
   ngOnInit() {
     this.route.paramMap.subscribe(map => this.type = map.get('type'));
@@ -30,6 +34,6 @@ export class AddItemComponent implements OnInit {
   }
 
   cancel(): void {
-
+    this.location.back();
   }
 }

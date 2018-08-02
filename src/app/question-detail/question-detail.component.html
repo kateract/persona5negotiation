@@ -1,3 +1,52 @@
-<p>
-  question-detail works!
-</p>
+<h2>{{mode}} Question</h2>
+<div class='content'>
+  <div class='label'>
+    <label>Question: </label>
+  </div>
+  <div class='field' id=1>
+    <input type="text" placeholder="Question" [(ngModel)]='question.text' />
+  </div>
+  <div></div>
+  <div class='label answer1'>
+    <label>Answer 1: </label>
+  </div>
+  <div class='field answer1'>
+    <input type="text" placeholder="Answer 1" [(ngModel)]='question.answers[0].text' />
+  </div>
+  <div class='type answer1'>
+    <select [(ngModel)]='question.answers[0].type'>
+      <option></option>
+      <option *ngFor='let atype of AnswerTypes.values()' [selected]='question.answers[0].type === atype' [ngValue]='atype'>{{atype}}</option>
+    </select>
+  </div>
+
+  <div class='label answer2'>
+    <label>Answer 2: </label>
+  </div>
+  <div class='field answer2'>
+    <input type="text" placeholder="Answer 2" [(ngModel)]='question.answers[1].text' />
+  </div>
+  <div class='type answer2'>
+    <select [(ngModel)]='question.answers[1].type'>
+      <option></option>
+      <option *ngFor='let atype of AnswerTypes.values()' [selected]='question.answers[1].type === atype' [ngValue]='atype'>{{atype}}</option>
+    </select>
+  </div>
+  <div class='label answer3'>
+    <label>Answer 3:
+    </label>
+  </div>
+  <div class='field answer3'>
+    <input type="text" placeholder="Answer 3" [(ngModel)]='question.answers[2].text' />
+  </div>
+  <div class='type answer3'>
+    <select [(ngModel)]='question.answers[2].type'>
+      <option></option>
+      <option *ngFor='let atype of AnswerTypes.values()' [selected]='question.answers[2].type === atype' [ngValue]='atype'>{{atype}}</option>
+    </select>
+  </div>
+  <div class=pastebox>
+    <div>Paste Area</div>
+    <textarea [(ngModel)]='pasteText' (ngModelChange)="dataPaste()"> </textarea>
+  </div>
+</div>

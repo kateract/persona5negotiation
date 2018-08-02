@@ -1,0 +1,60 @@
+h2 {
+  font-size: 1.2em;
+  margin-top: 0;
+  padding-top: 0;
+}
+
+.content {
+  width: 50%;
+  min-width: 620px;
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: 100px 400px 100px;
+  grid-template-rows: 30px 30px 30px 30px 30px 100px;
+}
+
+
+label {
+  width: 100%;
+  min-width: 400px;
+  text-align: right;
+}
+
+input {
+  width: 100%;
+  min-width: 300px;
+}
+.answer1 {
+  grid-row: 2;
+}
+.answer2 {
+  grid-row: 3;
+}
+.answer3 {
+  grid-row: 4;
+}
+.question {
+  text-align: right;
+  font-weight: bold;
+}
+
+.label {
+  grid-column: 1;
+  text-align: right;
+}
+.field {
+  grid-column: 2;
+}
+.type {
+  grid-column: 3;
+}
+.pastebox {
+  grid-row:5;
+  grid-column-end: span 3;
+}
+
+textarea {
+  width: 100%;
+  height: 100px;
+}
+

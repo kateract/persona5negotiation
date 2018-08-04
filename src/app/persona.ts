@@ -1,7 +1,7 @@
 import {PersonaType, Arcanas} from './typeDefs';
 
 export class Persona {
-  id: number;
+  id: string;
   name: string;
   codeName: string;
   type: PersonaType;

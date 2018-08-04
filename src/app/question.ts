@@ -1,13 +1,13 @@
 import { AnswerTypes } from './typeDefs';
 
 export class Question {
-  id: number;
+  id: string;
   text: string;
   answers: Answer[];
 }
 
 export class Answer {
-  id: number;
+  id: string;
   text: string;
   type: AnswerTypes;
 }

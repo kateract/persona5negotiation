@@ -14,15 +14,12 @@ export class PersonaService {
     return of(this.personas);
   }
 
-  getPersona(id: number): Observable<Persona> {
+  getPersona(id: string): Observable<Persona> {
     this.messageService.add(`PersonaService: fetched Persona id=${id}`);
     return of(this.personas.find(persona => persona.id === id));
   }
 
   addPersona(persona: Persona): void {
-    let id = 0;
-    id = this.personas.map(p => p.id).reduce((a, b) => a > b ? a : b);
-    persona.id = id + 1;
     this.personas.push(persona);
   }
 

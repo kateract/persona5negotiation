@@ -13,7 +13,7 @@ import { ActivatedRoute } from '@angular/router';
 export class QuestionDetailComponent implements OnInit {
   @Input() edit: boolean;
   @Input() question: Question;
-  @Input() id: number;
+  @Input() id: string;
   private pasteText: string;
   public mode = 'Edit';
   public AnswerTypes = AnswerTypes;
@@ -25,19 +25,19 @@ export class QuestionDetailComponent implements OnInit {
   ngOnInit() {
     if (!this.question) {
       this.route.paramMap.subscribe(map => {
-        this.id = parseInt(map.get('id'), 10);
+        this.id = map.get('id');
         this.getQuestion();
       });
-      if (this.id > 0) {
+      if (this.id) {
         this.getQuestion();
       } else {
         this.mode = 'New';
         this.question = new Question();
         this.question.text = '';
         this.question.answers = [
-          { id: 1, text: '', type: null },
-          { id: 2, text: '', type: null },
-          { id: 3, text: '', type: null }
+          { id: "", text: '', type: null, questionId: "" },
+          { id: "", text: '', type: null, questionId: "" },
+          { id: "", text: '', type: null, questionId: "" }
         ];
       }
     }

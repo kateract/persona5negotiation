@@ -3,7 +3,7 @@ import { QuestionService } from '../question.service';
 import { Question } from '../question';
 import { AnswerTypes } from '../typeDefs';
 import { ActivatedRoute } from '@angular/router';
-
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-question-detail',
@@ -19,14 +19,14 @@ export class QuestionDetailComponent implements OnInit {
   public AnswerTypes = AnswerTypes;
   constructor(
     private questionService: QuestionService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private location: Location
   ) { }
 
   ngOnInit() {
     if (!this.question) {
       this.route.paramMap.subscribe(map => {
         this.id = map.get('id');
-        this.getQuestion();
       });
       if (this.id) {
         this.getQuestion();
@@ -35,9 +35,9 @@ export class QuestionDetailComponent implements OnInit {
         this.question = new Question();
         this.question.text = '';
         this.question.answers = [
-          { id: "", text: '', type: null, questionId: "" },
-          { id: "", text: '', type: null, questionId: "" },
-          { id: "", text: '', type: null, questionId: "" }
+          { id: null, text: '', type: null, questionId: '' },
+          { id: null, text: '', type: null, questionId: '' },
+          { id: null, text: '', type: null, questionId: '' }
         ];
       }
     }
@@ -59,9 +59,13 @@ export class QuestionDetailComponent implements OnInit {
   }
 
   add(): void  {
-    this.questionService.add(this.question);
+    this.questionService.add(this.question).subscribe((q: Question) => {
+      this.location.back();
+    });
   }
   save(): void {
-    this.questionService.save(this.question);
+    this.questionService.save(this.question).subscribe((q: Question) => {
+      this.location.back();
+    });
   }
 }

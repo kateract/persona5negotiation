@@ -32,7 +32,7 @@ export class PersonaService {
   }
 
   deletePersona(persona: Persona): void {
-    this.http.delete(`${this.personasUrl}/${persona.id}`)
+    this.http.delete(`${this.personasUrl}/${persona.id}`);
   }
 
   constructor(

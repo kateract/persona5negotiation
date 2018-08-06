@@ -18,7 +18,7 @@ export class PersonaDetailComponent implements OnInit {
   public Arcanas = Arcanas;
   constructor(private personaService: PersonaService,
     private route: ActivatedRoute,
-    private location: Location 
+    private location: Location
   ) { }
 
   ngOnInit() {

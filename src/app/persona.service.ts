@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Persona } from './persona';
-import { PERSONAS } from './personas';
-import { Observable, of } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { MessageService } from './message.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
@@ -10,9 +9,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   providedIn: 'root'
 })
 export class PersonaService {
-  personas = PERSONAS;
   private personasUrl = 'http://crescendo:3000/api/personas';
-
+  public updated = new Subject<any>();
   getPersonas(): Observable<Persona[]> {
     this.messageService.add('PersonaService: fetched Personas');
     return this.http.get<Persona[]>(this.personasUrl);
@@ -24,6 +22,7 @@ export class PersonaService {
   }
 
   addPersona(persona: Persona): Observable<Persona> {
+    console.log(`adding persona: ${JSON.stringify(persona)}`);
     return this.http.post<Persona>(this.personasUrl, persona);
   }
 

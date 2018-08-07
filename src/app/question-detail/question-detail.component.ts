@@ -1,9 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { QuestionService } from '../question.service';
-import { Question } from '../question';
+import { Question, Answer } from '../question';
 import { AnswerTypes } from '../typeDefs';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
+import { jsonpCallbackContext } from '../../../node_modules/@angular/common/http/src/module';
 
 @Component({
   selector: 'app-question-detail',
@@ -28,17 +29,19 @@ export class QuestionDetailComponent implements OnInit {
       this.route.paramMap.subscribe(map => {
         this.id = map.get('id');
       });
+      this.question = new Question();
+      this.question.text = '';
+      this.question.answers = [
+        { id: null, text: '', type: null, questionId: '' },
+        { id: null, text: '', type: null, questionId: '' },
+        { id: null, text: '', type: null, questionId: '' }
+      ];
       if (this.id) {
         this.getQuestion();
+        this.mode = 'Edit';
       } else {
         this.mode = 'New';
-        this.question = new Question();
-        this.question.text = '';
-        this.question.answers = [
-          { id: null, text: '', type: null, questionId: '' },
-          { id: null, text: '', type: null, questionId: '' },
-          { id: null, text: '', type: null, questionId: '' }
-        ];
+
       }
     }
   }
@@ -59,13 +62,19 @@ export class QuestionDetailComponent implements OnInit {
   }
 
   add(): void  {
-    this.questionService.add(this.question).subscribe((q: Question) => {
+    this.questionService.addQuestion(this.question).subscribe((q: Question) => {
+      console.log(`Added question: ${JSON.stringify(q)}`);
       this.location.back();
     });
   }
   save(): void {
-    this.questionService.save(this.question).subscribe((q: Question) => {
+    this.questionService.saveQuestion(this.question).subscribe((q: Question) => {
+      console.log(`Saved question: ${JSON.stringify(q)}`);
       this.location.back();
     });
+  }
+
+  cancel(): void {
+    this.location.back();
   }
 }

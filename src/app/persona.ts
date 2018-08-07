@@ -1,9 +1,9 @@
-import {PersonaType, Arcanas} from './typeDefs';
+import {PersonaTypes, Arcanas} from './typeDefs';
 
 export class Persona {
   id: string;
   name: string;
   codeName: string;
-  type: PersonaType;
+  type: PersonaTypes;
   arcana: Arcanas;
 }

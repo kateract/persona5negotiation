@@ -1,11 +1,8 @@
-<h2>{{persona.name ? persona.name : "&lt;new-persona&gt;" | uppercase}}</h2>
-<div>
-  <label>Id: {{persona.id}}</label>
-</div>
+<h2>{{(persona.name ? persona.name : "&lt;new-persona&gt;") | uppercase}} <a routerLink='edit/persona/{{persona.id}}'>Edit</a></h2>
 <div>
   <label>Name:
     <input *ngIf='edit' [(ngModel)]="persona.name" placeholder="name">
-    <span *ngIf='!edit'>{{persona.name}} <a routerLink='edit/persona/{{persona.id}}'>Edit</a></span>
+    <span *ngIf='!edit'>{{persona.name}}</span>
   </label>
 </div>
 <div>
@@ -16,10 +13,10 @@
 </div>
 <div>
   <label>Type:
-    <select *ngIf='edit' [(ngModel)]='persona.type.type'>
+    <select *ngIf='edit' [(ngModel)]='persona.type'>
       <option *ngFor='let type of PersonaTypes.values();' [ngValue]='type'>{{type}}</option>
     </select>
-    <span *ngIf='!edit'>{{persona.type.type}}</span>
+    <span *ngIf='!edit'>{{persona.type}}</span>
   </label>
 </div>
 <div>

@@ -11,7 +11,7 @@
     </div>
     <ul class='personas'>
       <li *ngFor='let persona of personas | personaFilter: searchString' (click)='selectPersona(persona)'>
-        <a routerLink='/questions/{{persona.type.type}}'>
+        <a routerLink='/questions/{{persona.type}}'>
           <span class='badge'>{{persona.arcana}}</span> {{persona.name}}</a>
       </li>
     </ul>

@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { QuestionService } from '../question.service';
-import { Question } from '../question';
+import { Question, Answer } from '../question';
 import { AnswerTypes, PersonaTypes, PersonaType } from '../typeDefs';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
@@ -21,7 +21,6 @@ export class QuestionsComponent implements OnInit {
   constructor(
     private questionService: QuestionService,
     private route: ActivatedRoute,
-    private location: Location
   ) { }
 
   ngOnInit() {
@@ -54,5 +53,13 @@ export class QuestionsComponent implements OnInit {
       }
     }
     return 'neutral';
+  }
+
+  saveAnswer(answer: Answer, value: string): void {
+    console.log(`saveAnswer event called: ${value}`);
+    answer.type = AnswerTypes[value];
+    this.questionService.saveAnswer(answer).subscribe(a => {
+      console.log(`Saved answer: ${JSON.stringify(a)}`);
+    });
   }
 }

@@ -1,15 +1,14 @@
 import { Injectable } from '@angular/core';
-// import { QUESTIONS } from './questions';
 import { Question, Answer } from './question';
-import { Observable, of, forkJoin } from 'rxjs';
-import { map, mergeMap } from 'rxjs/operators';
+import { Observable, of, forkJoin, Observer } from 'rxjs';
+import { map, mergeMap, subscribeOn } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
+import { resolve } from '../../node_modules/@types/q';
 
 @Injectable({
   providedIn: 'root'
 })
 export class QuestionService {
-  // private questions: Question[] = QUESTIONS;
   private questionUrl = 'http://crescendo:3000/api/questions';
   private answerUrl = 'http://crescendo:3000/api/answers';
   constructor(
@@ -21,34 +20,51 @@ export class QuestionService {
   }
 
   getQuestion(id: string): Observable<Question> {
-    return this.http.get<Question>(`${this.questionUrl}/${id}`);
+    console.log(`getting question: ${id}`);
+    return this.http.get<Question>(`${this.questionUrl}/${id}/?filter={"include":"answers"}`);
   }
 
-  add(question: Question): Observable<Question> {
-    this.http.post<Question>(this.questionUrl, question).pipe(mergeMap((q: Question) => {
-      question.answers.forEach(answer => {
-        answer.questionId = q.id;
-        console.log(JSON.stringify(answer));
-        this.http.post(this.answerUrl, answer ).subscribe((a: Answer) => {
-          console.log(`Created answer ${JSON.stringify(a)}`);
+  addQuestion(question: Question): Observable<Question> {
+    return Observable.create(observer => {
+      this.http.post<Question>(this.questionUrl, question).subscribe(q => {
+        forkJoin<Answer>(this.addAnswers(q.id, question.answers)).subscribe(a => {
+          q.answers = a;
+          observer.next(q);
+          observer.complete();
         });
       });
     });
   }
 
-  save(question: Question): Observable<Question> {
-    this.http.put<Question>(this.questionUrl, question).subscribe((q: Question) => {
-      const a: Observable<Answer>[] = [];
-      question.answers.forEach(answer => {
-        answer.questionId = q.id;
-        a.push(this.http.put<Answer>(this.answerUrl, answer));
-      });
-      forkJoin(a).subscribe((results: Answer[]) => {
-        q.answers = results;
-        return of(q);
+  addAnswers(questionId: string, answers: Answer[]): Observable<Answer>[] {
+    return answers.map(a => this.addAnswer(questionId, a));
+  }
+
+  addAnswer(questionId: string, answer: Answer): Observable<Answer> {
+    answer.questionId = questionId;
+    return this.http.post<Answer>(this.answerUrl, answer);
+  }
+
+  saveQuestion(question: Question): Observable<Question> {
+    return Observable.create(observer => {
+      this.http.put<Question>(this.questionUrl, question).subscribe((q: Question) => {
+        forkJoin<Answer>(this.saveAnswers(question.answers)).subscribe(a => {
+          q.answers = a;
+          observer.next(q);
+          observer.complete();
+        });
       });
     });
   }
+
+  saveAnswers(answers: Answer[]): Observable<Answer>[] {
+    return answers.map(a => this.saveAnswer(a));
+  }
+
+  saveAnswer(answer: Answer): Observable<Answer> {
+    return this.http.put<Answer>(this.answerUrl, answer);
+  }
+
 
   delete(question: Question): void {
     question.answers.forEach(answer => {

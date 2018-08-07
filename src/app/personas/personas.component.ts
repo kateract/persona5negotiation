@@ -16,6 +16,7 @@ export class PersonasComponent implements OnInit {
 
   ngOnInit() {
     this.getPersonas();
+    this.personaService.updated.subscribe(() => this.getPersonas());
   }
 
   getPersonas(): void {

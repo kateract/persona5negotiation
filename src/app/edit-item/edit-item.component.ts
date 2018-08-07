@@ -3,6 +3,7 @@ import { Input, Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PersonaDetailComponent } from '../persona-detail/persona-detail.component';
 import { QuestionDetailComponent } from '../question-detail/question-detail.component';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-edit-item',
@@ -16,7 +17,10 @@ export class EditItemComponent implements OnInit {
   private personaDetailComponent: PersonaDetailComponent;
   @ViewChild(QuestionDetailComponent)
   private questionDetailComponent: QuestionDetailComponent;
-  constructor(private route: ActivatedRoute) { }
+  constructor(
+    private route: ActivatedRoute,
+    private location: Location
+  ) { }
 
   ngOnInit() {
     this.route.paramMap.subscribe(map => this.type = map.get('type'));
@@ -32,6 +36,6 @@ export class EditItemComponent implements OnInit {
   }
 
   cancel(): void {
-
+    this.location.back();
   }
 }

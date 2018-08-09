@@ -15,6 +15,7 @@ import { QuestionDetailComponent } from './question-detail/question-detail.compo
 import { QuestionFilterPipe } from './question-filter.pipe';
 import { EditItemComponent } from './edit-item/edit-item.component';
 import { PersonaFilterPipe } from './persona-filter.pipe';
+import { AnswerTypesComponent } from './answer-types/answer-types.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { PersonaFilterPipe } from './persona-filter.pipe';
     QuestionFilterPipe,
     EditItemComponent,
     PersonaFilterPipe,
+    AnswerTypesComponent,
   ],
   imports: [
     BrowserModule,

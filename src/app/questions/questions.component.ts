@@ -43,13 +43,12 @@ export class QuestionsComponent implements OnInit {
         this.filteredQuestions = questions;
       });
   }
-  getClass(type: AnswerTypes) {
-    if (type && this.personaType) {
-      if (this.personaType.like === type) {
-        return 'like';
-      }
-      if (this.personaType.dislike.find(dtype => type === dtype)) {
+  getClass(types: AnswerTypes[]) {
+    if (types && this.personaType) {
+      if (this.personaType.dislike.filter(dtype => -1 !== types.indexOf(dtype)).length > 0) {
         return 'dislike';
+      } else if (types.find(t => t === this.personaType.like)) {
+        return 'like';
       }
     }
     return 'neutral';
@@ -57,7 +56,7 @@ export class QuestionsComponent implements OnInit {
 
   saveAnswer(answer: Answer, value: string): void {
     console.log(`saveAnswer event called: ${value}`);
-    answer.type = AnswerTypes[value];
+    answer.types.push(AnswerTypes[value]);
     this.questionService.saveAnswer(answer).subscribe(a => {
       console.log(`Saved answer: ${JSON.stringify(a)}`);
     });

@@ -32,9 +32,9 @@ export class QuestionDetailComponent implements OnInit {
       this.question = new Question();
       this.question.text = '';
       this.question.answers = [
-        { id: null, text: '', type: null, questionId: '' },
-        { id: null, text: '', type: null, questionId: '' },
-        { id: null, text: '', type: null, questionId: '' }
+        { id: null, text: '', type: null, types: [], questionId: '' },
+        { id: null, text: '', type: null, types: [], questionId: '' },
+        { id: null, text: '', type: null, types: [], questionId: '' }
       ];
       if (this.id) {
         this.getQuestion();
@@ -58,6 +58,7 @@ export class QuestionDetailComponent implements OnInit {
   getQuestion(): void {
     this.questionService.getQuestion(this.id).subscribe(question => {
       this.question = question;
+      console.log(JSON.stringify(question));
     });
   }
 

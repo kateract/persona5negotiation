@@ -12,11 +12,8 @@
       <li class='question' *ngFor='let question of questions | questionFilter : searchString'>{{question.text}} <a routerLink="/edit/question/{{question.id}}">Edit</a>
         <ol>
           <li class='answer' *ngFor='let answer of question.answers'>
-            <div [class]='getClass(answer.type)'>{{answer.text}}
-              <select (change)='saveAnswer(answer, $event.target.value)' >
-                <option></option>
-                <option *ngFor='let atype of AnswerTypes.values()' [selected]='answer.type === atype' [value]='atype'>{{atype}}</option>
-              </select>
+            <div [class]='getClass(answer.types)'>{{answer.text}} ({{answer.type}})
+              <app-answer-types [answer]=answer></app-answer-types>
             </div>
           </li>
         </ol>

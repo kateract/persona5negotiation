@@ -8,15 +8,15 @@ h2 {
   width: 50%;
   min-width: 620px;
   display: grid;
-  grid-gap: 10px;
-  grid-template-columns: 100px 400px 100px;
-  grid-template-rows: 30px 30px 30px 30px 30px 100px;
+  grid-gap: 2px;
+  grid-template-columns: 100px 1fr;
+  grid-template-rows: 60px 25px 35px 25px 35px 25px 35px 35px 100px;
 }
 
 
 label {
   width: 100%;
-  min-width: 400px;
+  min-width: 300px;
   text-align: right;
 }
 
@@ -27,11 +27,20 @@ input {
 .answer1 {
   grid-row: 2;
 }
-.answer2 {
+.type1 {
   grid-row: 3;
 }
-.answer3 {
+.answer2 {
   grid-row: 4;
+}
+.type2 {
+  grid-row: 5;
+}
+.answer3 {
+  grid-row: 6;
+}
+.type3 {
+  grid-row: 7;
 }
 .question {
   text-align: right;
@@ -45,16 +54,15 @@ input {
 .field {
   grid-column: 2;
 }
-.type {
-  grid-column: 3;
-}
 .pastebox {
-  grid-row:5;
-  grid-column-end: span 3;
+  grid-row:8;
+  grid-column-end: span 2;
+}
+textarea{
+  width: 100%;
 }
 
-textarea {
-  width: 100%;
+.pastebox textarea {
   height: 100px;
 }
 

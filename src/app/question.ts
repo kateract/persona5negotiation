@@ -10,5 +10,6 @@ export class Answer {
   id: string;
   text: string;
   type: AnswerTypes;
+  types: AnswerTypes[];
   questionId: string;
 }

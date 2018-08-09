@@ -1,0 +1,5 @@
+.area {
+  display: grid;
+  max-width: 350px;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}

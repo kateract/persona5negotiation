@@ -4,6 +4,7 @@ import { Observable, of, forkJoin, Observer } from 'rxjs';
 import { map, mergeMap, subscribeOn } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { resolve } from '../../node_modules/@types/q';
+import { jsonpCallbackContext } from '../../node_modules/@angular/common/http/src/module';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +17,20 @@ export class QuestionService {
   ) { }
 
   getQuestions(): Observable<Question[]> {
+    this.http.get<Question[]>(`${this.questionUrl}/?filter={"include":"answers"}`).subscribe(questions => {
+      questions.forEach(q => {
+        q.answers.forEach(a => {
+          if (!a.types || a.types.length === 0) {
+            if (a.type) {
+              a.types = [];
+              a.types.push(a.type);
+              console.log(`saving answer : ${JSON.stringify(a)}`);
+              this.saveAnswer(a).subscribe();
+            }
+          }
+        });
+      });
+    });
     return this.http.get<Question[]>(`${this.questionUrl}/?filter={"include":"answers"}`);
   }
 
@@ -64,7 +79,6 @@ export class QuestionService {
   saveAnswer(answer: Answer): Observable<Answer> {
     return this.http.put<Answer>(this.answerUrl, answer);
   }
-
 
   delete(question: Question): void {
     question.answers.forEach(answer => {

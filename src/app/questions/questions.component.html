@@ -5,7 +5,7 @@
     </h2>
     <label>Search:
         <input type="text" [(ngModel)]='this.searchString' (onChange)='this.filter(this.searchString)'>
-    </label>
+    </label><span *ngIf="this.personaType"> Highlighting {{personaType.type}} - <span class="like">Likes: {{this.personaType.like}}</span> <span class="dislike"> Dislikes:<span *ngFor="let type of personaType.dislike"><span>{{type}} </span></span> </span></span>
   </questions-header>
   <questions-content>
     <ul>

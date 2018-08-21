@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Persona, PersonaType, PersonaTypes } from '../persona';
+import { Persona, PersonaType, PersonaTypes } from '../../models/persona';
 import { PersonaService } from '../persona.service';
 
 @Component({

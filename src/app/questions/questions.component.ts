@@ -1,8 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { QuestionService } from '../question.service';
-import { Question, AnswerTypes, Answer } from '../question';
-import { PersonaTypes, PersonaType } from '../persona';
+import { Question, AnswerTypes, Answer } from '../../models/question';
+import { PersonaTypes, PersonaType } from '../../models/persona';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 

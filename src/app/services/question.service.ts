@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Question, Answer } from '../../models/question';
+import { Question, Answer } from '../models/question';
 import { Observable, of, forkJoin, Observer } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 

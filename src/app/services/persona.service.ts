@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Persona } from '../../models/persona';
+import { Persona } from '../models/persona';
 import { Observable, Subject } from 'rxjs';
 import { MessageService } from './message.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';

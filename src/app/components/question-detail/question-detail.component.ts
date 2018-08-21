@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { QuestionService } from '../../services/question.service';
-import { Question, Answer, AnswerTypes } from '../../../models/question';
+import { Question, Answer, AnswerTypes } from '../../models/question';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { jsonpCallbackContext } from '@angular/common/http/src/module';

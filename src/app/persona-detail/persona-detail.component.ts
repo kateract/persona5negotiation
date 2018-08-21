@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Persona } from '../persona';
-import { PersonaTypes, Arcanas, PersonaType } from '../personaTypeDefs';
+import { Persona, PersonaTypes, Arcanas  } from '../persona';
 import { PersonaService } from '../persona.service';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';

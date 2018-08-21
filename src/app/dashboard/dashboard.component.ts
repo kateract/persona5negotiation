@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PersonaTypes, PersonaType } from '../personaTypeDefs';
+import { PersonaTypes, PersonaType } from '../persona';
 
 @Component({
   selector: 'app-dashboard',

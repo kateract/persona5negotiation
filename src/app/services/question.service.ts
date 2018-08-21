@@ -1,10 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Question, Answer } from '../models/question';
+import { Question, Answer } from '../../models/question';
 import { Observable, of, forkJoin, Observer } from 'rxjs';
-import { map, mergeMap, subscribeOn } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
-import { resolve } from 'q';
-import { jsonpCallbackContext } from '@angular/common/http/src/module';
+
 
 @Injectable({
   providedIn: 'root'

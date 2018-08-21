@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { QuestionsComponent } from './questions/questions.component';
-import { AddItemComponent } from './add-item/add-item.component';
-import { EditItemComponent } from './edit-item/edit-item.component';
+import { QuestionsComponent } from './components/questions/questions.component';
+import { AddItemComponent } from './components/add-item/add-item.component';
+import { EditItemComponent } from './components/edit-item/edit-item.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/questions', pathMatch: 'full' },

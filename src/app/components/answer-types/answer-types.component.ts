@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Answer, AnswerTypes } from '../../models/question';
-import { QuestionService } from '../question.service';
+import { Answer, AnswerTypes } from '../../../models/question';
+import { QuestionService } from '../../services/question.service';
 
 @Component({
   selector: 'app-answer-types',

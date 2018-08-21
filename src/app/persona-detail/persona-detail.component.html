@@ -27,3 +27,10 @@
     </select>
   </label>
 </div>
+<div>
+  <label><span *ngIf='edit'>Strengths/</span>Weaknesses:
+    <span *ngIf='!edit'>
+      <span *ngFor='let weakness of persona.weaknesses()'>{{weakness}}</span>
+    </span>
+  </label>
+</div>

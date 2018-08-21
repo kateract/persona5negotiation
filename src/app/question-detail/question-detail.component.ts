@@ -1,10 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { QuestionService } from '../question.service';
 import { Question, Answer } from '../question';
-import { AnswerTypes } from '../typeDefs';
+import { AnswerTypes } from '../personaTypeDefs';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
-import { jsonpCallbackContext } from '../../../node_modules/@angular/common/http/src/module';
+import { jsonpCallbackContext } from '@angular/common/http/src/module';
 
 @Component({
   selector: 'app-question-detail',

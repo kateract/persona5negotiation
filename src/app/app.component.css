@@ -36,7 +36,7 @@ nav a.active {
   "personas-content questions-content"
   "footer footer";
   grid-template-columns: calc(1em + 300px) 1fr;
-  grid-template-rows: 50px 200px 1fr 30px;
+  grid-template-rows: 50px 250px 1fr 30px;
   grid-gap: 10px;
   height: calc(100vh);
 }

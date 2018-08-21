@@ -58,6 +58,7 @@ export enum Arcanas {
   Fool = 'Fool',
   Magician = 'Magician',
   Priestess = 'Priestess',
+  Empress = 'Empress',
   Emperor = 'Emperor',
   Hierophant = 'Hierophant',
   Lovers = 'Lovers',
@@ -70,10 +71,11 @@ export enum Arcanas {
   Death = 'Death',
   Temperance = 'Temperance',
   Devil = 'Devil',
+  Tower = 'Tower',
   Star = 'Star',
   Moon = 'Moon',
   Sun = 'Sun',
-  Judge = 'Judge'
+  Judgement = 'Judgement'
 }
 
 export namespace Arcanas {
@@ -87,11 +89,24 @@ export enum DamageTypes {
   Gun = 'Gun',
   Fire = 'Fire',
   Ice = 'Ice',
-  Shock = 'Shock',
+  Electric = 'Electric',
   Wind = 'Wind',
-  Psy = 'Psy',
-  Nuke = 'Nuke',
-  Light = 'Light',
-  Death = 'Death'
+  Psychic = 'Psychic',
+  Nuclear = 'Nuclear',
+  Bless = 'Bless',
+  Curse = 'Curse',
+  Almighty = 'Almighty'
 }
 
+export enum DamageEffectivenessTypes {
+  Normal = '',
+  Strong = 'Str',
+  Weak = 'Wk',
+  Null = 'Nul',
+  Drain = 'Dr'
+}
+
+export class DamageEffectiveness {
+  public type: DamageTypes;
+  public effectiveness: DamageEffectivenessTypes;
+}

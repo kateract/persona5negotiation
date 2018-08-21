@@ -1,17 +1,18 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { Persona } from './persona';
 
 @Pipe({
   name: 'personaFilter'
 })
 export class PersonaFilterPipe implements PipeTransform {
 
-   transform(items: any[], searchText: string): any[] {
+  transform(items: Persona[], searchText: string): Persona[] {
     if (!items) { return []; }
     if (!searchText) { return items; }
 
     searchText = searchText.toLowerCase();
-    return items.filter( it => {
-      return it.name.toLowerCase().includes(searchText) || it.codeName.toLowerCase().includes(searchText);
+    return items.filter( (it: Persona) => {
+      return (it.name && it.name.toLowerCase().includes(searchText)) || (it.codeName && it.codeName.toLowerCase().includes(searchText));
     });
   }
 

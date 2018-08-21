@@ -3,8 +3,8 @@ import { Question, Answer } from './question';
 import { Observable, of, forkJoin, Observer } from 'rxjs';
 import { map, mergeMap, subscribeOn } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
-import { resolve } from '../../node_modules/@types/q';
-import { jsonpCallbackContext } from '../../node_modules/@angular/common/http/src/module';
+import { resolve } from 'q';
+import { jsonpCallbackContext } from '@angular/common/http/src/module';
 
 @Injectable({
   providedIn: 'root'

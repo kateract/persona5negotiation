@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PersonaTypes } from '../typeDefs';
+import { PersonaTypes, PersonaType } from '../personaTypeDefs';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,13 +9,13 @@ import { PersonaTypes } from '../typeDefs';
 export class DashboardComponent implements OnInit {
 
   constructor() { }
-  types: string[];
+  types: PersonaType[];
   ngOnInit() {
     this.getTypes();
   }
 
   getTypes(): void {
-    this.types = PersonaTypes.values();
+    this.types = PersonaTypes.values().map(t => new PersonaType(PersonaTypes[t]));
   }
 
 }

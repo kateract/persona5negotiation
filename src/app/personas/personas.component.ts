@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Persona } from '../persona';
-import { PersonaType, PersonaTypes } from '../typeDefs';
+import { PersonaType, PersonaTypes } from '../personaTypeDefs';
 import { PersonaService } from '../persona.service';
 
 @Component({

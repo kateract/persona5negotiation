@@ -18,6 +18,7 @@ h4 {
 .grid {
   margin: 0;
   width: 100%;
+
   display: grid;
   grid-template-rows: 1fr 1fr;
   grid-template-columns: 1fr 1fr;
@@ -38,7 +39,7 @@ h4 {
   color: #607d8b;
 }
 .grid-pad {
-  padding: 10px 0;
+  padding: 5px 0;
 }
 .grid-pad > [class*='row-']:last-of-type {
   padding-right: 20px;

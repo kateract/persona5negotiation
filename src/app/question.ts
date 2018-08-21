@@ -1,4 +1,4 @@
-import { AnswerTypes } from './typeDefs';
+import { AnswerTypes } from './personaTypeDefs';
 
 export class Question {
   id: string;

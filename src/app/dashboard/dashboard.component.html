@@ -2,9 +2,10 @@
     <h2>Persona Types</h2>
 </types-title>
 <div class="grid grid=pad">
-  <a *ngFor="let type of types" class="type" routerLink="/questions/{{type}}">
+  <a *ngFor="let type of types" class="type" routerLink="/questions/{{type.type}}">
     <div class="module type">
-      <h4>{{type}}</h4>
+      <h4>{{type.type}}<br />
+      ({{type.like}})</h4>
     </div>
  </a>
 </div>

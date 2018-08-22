@@ -30,7 +30,66 @@
 <div>
   <label><span *ngIf='edit'>Strengths/</span>Weaknesses:
     <span *ngIf='!edit'>
-      <span *ngFor='let weakness of persona.weaknesses()'>{{weakness}}</span>
+      <span *ngFor='let weakness of weaknesses'>{{weakness}} </span>
     </span>
+    <div *ngIf='edit'>
+      <ul>
+        <li><label>Physical: </label>
+          <select [(ngModel)]='persona.damageEffectiveness.physical'>
+            <option *ngFor='let efftype of Effectiveness.values();' [ngValue]='efftype'>{{efftype}}</option>
+          </select>
+        </li>
+        <li><label>Gun: </label>
+          <select [(ngModel)]='persona.damageEffectiveness.gun'>
+            <option *ngFor='let efftype of Effectiveness.values();' [ngValue]='efftype'>{{efftype}}</option>
+          </select>
+        </li>
+        <li><label>Fire: </label>
+          <select [(ngModel)]='persona.damageEffectiveness.fire'>
+            <option *ngFor='let efftype of Effectiveness.values();' [ngValue]='efftype'>{{efftype}}</option>
+          </select>
+        </li>
+        <li><label>Ice: </label>
+          <select [(ngModel)]='persona.damageEffectiveness.ice'>
+            <option *ngFor='let efftype of Effectiveness.values();' [ngValue]='efftype'>{{efftype}}</option>
+          </select>
+        </li>
+        <li><label>Electric: </label>
+          <select [(ngModel)]='persona.damageEffectiveness.electric'>
+            <option *ngFor='let efftype of Effectiveness.values();' [ngValue]='efftype'>{{efftype}}</option>
+          </select>
+        </li>
+        <li><label>Wind: </label>
+          <select [(ngModel)]='persona.damageEffectiveness.wind'>
+            <option *ngFor='let efftype of Effectiveness.values();' [ngValue]='efftype'>{{efftype}}</option>
+          </select>
+        </li>
+        <li><label>Psychic: </label>
+          <select [(ngModel)]='persona.damageEffectiveness.psychic'>
+            <option *ngFor='let efftype of Effectiveness.values();' [ngValue]='efftype'>{{efftype}}</option>
+          </select>
+        </li>
+        <li><label>Nuclear: </label>
+          <select [(ngModel)]='persona.damageEffectiveness.nuclear'>
+            <option *ngFor='let efftype of Effectiveness.values();' [ngValue]='efftype'>{{efftype}}</option>
+          </select>
+        </li>
+        <li><label>Bless: </label>
+          <select [(ngModel)]='persona.damageEffectiveness.bless'>
+            <option *ngFor='let efftype of Effectiveness.values();' [ngValue]='efftype'>{{efftype}}</option>
+          </select>
+        </li>
+        <li><label>Curse: </label>
+          <select [(ngModel)]='persona.damageEffectiveness.curse'>
+            <option *ngFor='let efftype of Effectiveness.values();' [ngValue]='efftype'>{{efftype}}</option>
+          </select>
+        </li>
+        <li><label>Almighty: </label>
+          <select [(ngModel)]='persona.damageEffectiveness.almighty'>
+            <option *ngFor='let efftype of Effectiveness.values();' [ngValue]='efftype'>{{efftype}}</option>
+          </select>
+        </li>
+      </ul>
+    </div>
   </label>
 </div>

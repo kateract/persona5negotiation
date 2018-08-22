@@ -6,24 +6,9 @@ export class Persona {
   codeName: string;
   type: PersonaTypes;
   arcana: Arcanas;
-  damageEffectiveness: DamageEffectiveness[];
-
+  damageEffectiveness: DamageEffectiveness;
   constructor() {
-    this.damageEffectiveness = [
-      {type: DamageTypes.Physical, effectiveness: DamageEffectivenessTypes.Normal},
-      {type: DamageTypes.Gun, effectiveness: DamageEffectivenessTypes.Normal},
-      {type: DamageTypes.Fire, effectiveness: DamageEffectivenessTypes.Normal},
-      {type: DamageTypes.Ice, effectiveness: DamageEffectivenessTypes.Normal},
-      {type: DamageTypes.Electric, effectiveness: DamageEffectivenessTypes.Normal},
-      {type: DamageTypes.Wind, effectiveness: DamageEffectivenessTypes.Normal},
-      {type: DamageTypes.Psychic, effectiveness: DamageEffectivenessTypes.Normal},
-      {type: DamageTypes.Nuclear, effectiveness: DamageEffectivenessTypes.Normal},
-      {type: DamageTypes.Bless, effectiveness: DamageEffectivenessTypes.Normal},
-    ];
-  }
-
-  public weaknesses(): DamageTypes[] {
-    return this.damageEffectiveness.filter(d => d.effectiveness === DamageEffectivenessTypes.Weak).map(t => t.type);
+    this.damageEffectiveness = new DamageEffectiveness();
   }
 }
 
@@ -113,15 +98,32 @@ export enum DamageTypes {
   Almighty = 'Almighty'
 }
 
-export enum DamageEffectivenessTypes {
-  Normal = '',
-  Strong = 'Str',
-  Weak = 'Wk',
-  Null = 'Nul',
-  Drain = 'Dr'
+export enum Effectiveness {
+  Normal = 'Normal',
+  Strong = 'Strong',
+  Weak = 'Weak',
+  Null = 'Null',
+  Drain = 'Drain'
+}
+
+export namespace Effectiveness {
+  export function values() {
+    return Object.keys(Effectiveness).filter((type) => isNaN(<any>type) && type !== 'values');
+  }
 }
 
 export class DamageEffectiveness {
-  public type: DamageTypes;
-  public effectiveness: DamageEffectivenessTypes;
+  id: string;
+  personaId: string;
+  physical: Effectiveness = Effectiveness.Normal;
+  gun: Effectiveness = Effectiveness.Normal;
+  fire: Effectiveness = Effectiveness.Normal;
+  ice: Effectiveness = Effectiveness.Normal;
+  electric: Effectiveness = Effectiveness.Normal;
+  wind: Effectiveness = Effectiveness.Normal;
+  psychic: Effectiveness = Effectiveness.Normal;
+  nuclear: Effectiveness = Effectiveness.Normal;
+  bless: Effectiveness = Effectiveness.Normal;
+  curse: Effectiveness = Effectiveness.Normal;
+  almighty: Effectiveness = Effectiveness.Normal;
 }

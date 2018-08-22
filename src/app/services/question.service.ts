@@ -81,7 +81,7 @@ export class QuestionService {
   delete(question: Question): void {
     question.answers.forEach(answer => {
       this.http.delete(`${this.answerUrl}/${question.id}/answers`);
-      this.http.delete(`${this.questionUrl}/${question.id}`);
     });
+    this.http.delete(`${this.questionUrl}/${question.id}`);
   }
 }

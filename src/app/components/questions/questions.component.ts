@@ -45,10 +45,10 @@ export class QuestionsComponent implements OnInit {
   }
   getClass(types: AnswerTypes[]) {
     if (types && this.personaType) {
-      if (this.personaType.dislike.filter(dtype => -1 !== types.indexOf(dtype)).length > 0) {
-        return 'dislike';
-      } else if (types.find(t => t === this.personaType.like)) {
+      if (types.find(t => t === this.personaType.like)) {
         return 'like';
+      } else if (this.personaType.dislike.filter(dtype => -1 !== types.indexOf(dtype)).length > 0) {
+        return 'dislike';
       }
     }
     return 'neutral';

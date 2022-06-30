@@ -11,9 +11,9 @@ import { QuestionDetailComponent } from '../question-detail/question-detail.comp
 })
 export class AddItemComponent implements OnInit {
   @Input() type: string;
-  @ViewChild(PersonaDetailComponent)
+  @ViewChild(PersonaDetailComponent, { static: false })
   private personaDetailComponent: PersonaDetailComponent;
-  @ViewChild(QuestionDetailComponent)
+  @ViewChild(QuestionDetailComponent, { static: false })
   private questionDetailComponent: QuestionDetailComponent;
   constructor(
     private route: ActivatedRoute,

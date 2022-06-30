@@ -13,9 +13,9 @@ import { Location } from '@angular/common';
 export class EditItemComponent implements OnInit {
   @Input() type: string;
   @Input() id: number;
-  @ViewChild(PersonaDetailComponent, { static: false })
+  @ViewChild(PersonaDetailComponent)
   private personaDetailComponent: PersonaDetailComponent;
-  @ViewChild(QuestionDetailComponent, { static: false })
+  @ViewChild(QuestionDetailComponent)
   private questionDetailComponent: QuestionDetailComponent;
   constructor(
     private route: ActivatedRoute,

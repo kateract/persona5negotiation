@@ -1,7 +1,7 @@
 import {AnswerTypes } from './question';
 
 export class Persona {
-  id: string;
+  id: number;
   name: string;
   codeName: string;
   type: PersonaTypes;
@@ -113,8 +113,8 @@ export namespace Effectiveness {
 }
 
 export class DamageEffectiveness {
-  id: string;
-  personaId: string;
+  id: number;
+  personaId: number;
   physical: Effectiveness = Effectiveness.Normal;
   gun: Effectiveness = Effectiveness.Normal;
   fire: Effectiveness = Effectiveness.Normal;

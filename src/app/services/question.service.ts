@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Question, Answer } from '../models/question';
-import { Observable, of, forkJoin, Observer } from 'rxjs';
+import { Observable, forkJoin } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
 
@@ -8,39 +8,37 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class QuestionService {
-  private questionUrl = 'http://crescendo:3000/api/questions';
-  private answerUrl = 'http://crescendo:3000/api/answers';
+  private questionUrl = 'http://localhost:3000/questions';
+  private answerUrl = 'http://localhost:3000/answers';
   constructor(
     private http: HttpClient
   ) { }
 
   getQuestions(): Observable<Question[]> {
-    this.http.get<Question[]>(`${this.questionUrl}/?filter={"include":"answers"}`).subscribe(questions => {
+    this.http.get<Question[]>(`${this.questionUrl}/?filter[include][][relation]=answers`).subscribe(questions => {
       questions.forEach(q => {
         q.answers.forEach(a => {
-          if (!a.types || a.types.length === 0) {
-            if (a.type) {
-              a.types = [];
-              a.types.push(a.type);
-              console.log(`saving answer : ${JSON.stringify(a)}`);
-              this.saveAnswer(a).subscribe();
-            }
-          }
+          console.log(`saving answer : ${JSON.stringify(a)}`);
+          this.saveAnswer(a).subscribe();
         });
       });
     });
-    return this.http.get<Question[]>(`${this.questionUrl}/?filter={"include":"answers"}`);
+    return this.http.get<Question[]>(`${this.questionUrl}/?filter[include][][relation]=answers`);
   }
 
-  getQuestion(id: string): Observable<Question> {
+  getQuestion(id: number): Observable<Question> {
     console.log(`getting question: ${id}`);
-    return this.http.get<Question>(`${this.questionUrl}/${id}/?filter={"include":"answers"}`);
+    return this.http.get<Question>(`${this.questionUrl}/${id}/?filter[include][][relation]=answers`);
   }
 
   addQuestion(question: Question): Observable<Question> {
-    return Observable.create(observer => {
+    console.log(question);
+    return new Observable(observer => {
+      let answers = question.answers;
+      delete question.answers;
+      console.log(question);
       this.http.post<Question>(this.questionUrl, question).subscribe(q => {
-        forkJoin<Answer>(this.addAnswers(q.id, question.answers)).subscribe(a => {
+        forkJoin(this.addAnswers(q.id, answers)).subscribe(a => {
           q.answers = a;
           observer.next(q);
           observer.complete();
@@ -49,19 +47,22 @@ export class QuestionService {
     });
   }
 
-  addAnswers(questionId: string, answers: Answer[]): Observable<Answer>[] {
+  addAnswers(questionId: number, answers: Answer[]): Observable<Answer>[] {
     return answers.map(a => this.addAnswer(questionId, a));
   }
 
-  addAnswer(questionId: string, answer: Answer): Observable<Answer> {
+  addAnswer(questionId: number, answer: Answer): Observable<Answer> {
     answer.questionId = questionId;
+    console.log(answer);
     return this.http.post<Answer>(this.answerUrl, answer);
   }
 
   saveQuestion(question: Question): Observable<Question> {
-    return Observable.create(observer => {
-      this.http.put<Question>(this.questionUrl, question).subscribe((q: Question) => {
-        forkJoin<Answer>(this.saveAnswers(question.answers)).subscribe(a => {
+    return new Observable(observer => {
+      let answers = question.answers;
+      delete question.answers;
+      this.http.put<Question>(`${this.questionUrl}/${question.id}`, question).subscribe((q: Question) => {
+        forkJoin(this.saveAnswers(answers)).subscribe(a => {
           q.answers = a;
           observer.next(q);
           observer.complete();
@@ -75,7 +76,7 @@ export class QuestionService {
   }
 
   saveAnswer(answer: Answer): Observable<Answer> {
-    return this.http.put<Answer>(this.answerUrl, answer);
+    return this.http.put<Answer>(`${this.answerUrl}/${answer.id}`, answer);
   }
 
   delete(question: Question): void {

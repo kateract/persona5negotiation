@@ -3,7 +3,7 @@ import { QuestionService } from '../../services/question.service';
 import { Question, Answer, AnswerTypes } from '../../models/question';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
-import { jsonpCallbackContext } from '@angular/common/http/src/module';
+//import { jsonpCallbackContext } from '@angular/common/http/src/module';
 
 @Component({
   selector: 'app-question-detail',
@@ -13,8 +13,8 @@ import { jsonpCallbackContext } from '@angular/common/http/src/module';
 export class QuestionDetailComponent implements OnInit {
   @Input() edit: boolean;
   @Input() question: Question;
-  @Input() id: string;
-  private pasteText: string;
+  @Input() id: number;
+  public pasteText: string;
   public mode = 'Edit';
   public AnswerTypes = AnswerTypes;
   constructor(
@@ -26,14 +26,14 @@ export class QuestionDetailComponent implements OnInit {
   ngOnInit() {
     if (!this.question) {
       this.route.paramMap.subscribe(map => {
-        this.id = map.get('id');
+        this.id = parseInt(map.get('id'));
       });
       this.question = new Question();
       this.question.text = '';
       this.question.answers = [
-        { id: null, text: '', type: null, types: [], questionId: '' },
-        { id: null, text: '', type: null, types: [], questionId: '' },
-        { id: null, text: '', type: null, types: [], questionId: '' }
+        { id: null, text: '', types: [], questionId: 0 },
+        { id: null, text: '', types: [], questionId: 0 },
+        { id: null, text: '', types: [], questionId: 0 }
       ];
       if (this.id) {
         this.getQuestion();

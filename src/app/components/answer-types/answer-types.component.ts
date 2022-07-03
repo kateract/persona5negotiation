@@ -17,7 +17,7 @@ export class AnswerTypesComponent implements OnInit {
   ngOnInit() {
   }
 
-  private flipType(stype: string): boolean {
+  public flipType(stype: string): boolean {
     let ret: boolean;
     const type = AnswerTypes[stype];
     if (this.answer.types) {
@@ -41,7 +41,7 @@ export class AnswerTypesComponent implements OnInit {
 
   }
 
-  private checkType(stype: string): boolean {
+  public checkType(stype: string): boolean {
     const type = AnswerTypes[stype];
     if (this.answer.types) {
       const index = this.answer.types.findIndex(t => t === type);

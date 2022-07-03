@@ -9,25 +9,25 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   providedIn: 'root'
 })
 export class PersonaService {
-  private personasUrl = 'http://crescendo:3000/api/personas';
-  private damageEffUrl = 'http://crescendo:3000/api/damageEffectivenesses';
+  private personasUrl = 'http://localhost:3000/personas';
+  private damageEffUrl = 'http://localhost:3000/damage-effectivenesses';
   public updated = new Subject<any>();
   getPersonas(): Observable<Persona[]> {
-    return this.http.get<Persona[]>(`${this.personasUrl}/?filter={"include":"damageEffectiveness"}`);
+    return this.http.get<Persona[]>(`${this.personasUrl}/?filter[include][][relation]=damageEffectiveness`);
   }
 
-  getPersona(id: string): Observable<Persona> {
-    return this.http.get<Persona>(`${this.personasUrl}/${id}/?filter={"include":"damageEffectiveness"}`);
+  getPersona(id: number): Observable<Persona> {
+    return this.http.get<Persona>(`${this.personasUrl}/${id}/?filter[include][][relation]=damageEffectiveness`);
   }
 
   addPersona(persona: Persona): Observable<Persona> {
-    return Observable.create(observer => {
-      console.log(JSON.stringify(persona));
+    return new Observable(observer => {
+      let de = persona.damageEffectiveness;
+      delete persona.damageEffectiveness;
       this.http.post<Persona>(this.personasUrl, persona).subscribe(p => {
-        console.log(JSON.stringify(persona));
-        persona.damageEffectiveness.personaId = p.id;
-        persona.damageEffectiveness.id = null;
-        this.addDamageEffectiveness(p.id, persona).subscribe(d => {
+        de.personaId = p.id;
+        de.id = null;
+        this.addDamageEffectiveness(de).subscribe(d => {
           p.damageEffectiveness = d;
           observer.next(p);
           observer.complete();
@@ -38,10 +38,12 @@ export class PersonaService {
 
   savePersona(persona: Persona): Observable<Persona> {
     console.log(JSON.stringify(persona));
-    return Observable.create(observer => {
-      this.http.put<Persona>(this.personasUrl, persona).subscribe(p => {
+    return new Observable(observer => {
+      let de = persona.damageEffectiveness;
+      delete persona.damageEffectiveness;
+      this.http.put<Persona>(`${this.personasUrl}/${persona.id}`, persona).subscribe(p => {
         persona.damageEffectiveness.personaId = p.id;
-        this.saveDamageEffectiveness(persona.damageEffectiveness).subscribe(d => {
+        this.saveDamageEffectiveness(de).subscribe(d => {
           p.damageEffectiveness = d;
           observer.next(p);
           observer.complete();
@@ -54,12 +56,12 @@ export class PersonaService {
     this.http.delete(`${this.personasUrl}/${persona.id}`);
   }
 
-  addDamageEffectiveness(personaId: string, persona: Persona): Observable<DamageEffectiveness> {
-    return this.http.post<DamageEffectiveness>(`${this.personasUrl}/${personaId}/damageEffectiveness/`, persona.damageEffectiveness);
+  addDamageEffectiveness(damageEffectiveness: DamageEffectiveness): Observable<DamageEffectiveness> {
+    return this.http.post<DamageEffectiveness>(this.damageEffUrl, damageEffectiveness);
   }
 
   saveDamageEffectiveness(damageEffectiveness: DamageEffectiveness): Observable<DamageEffectiveness> {
-    return this.http.put<DamageEffectiveness>(this.damageEffUrl, damageEffectiveness);
+    return this.http.put<DamageEffectiveness>(`${this.damageEffUrl}/${damageEffectiveness.id}`, damageEffectiveness);
   }
 
   constructor(

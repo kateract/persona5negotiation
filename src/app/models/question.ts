@@ -1,15 +1,14 @@
 export class Question {
-  id: string;
+  id: number;
   text: string;
   answers: Answer[];
 }
 
 export class Answer {
-  id: string;
+  id: number;
   text: string;
-  type: AnswerTypes;
   types: AnswerTypes[];
-  questionId: string;
+  questionId: number;
 }
 
 export enum AnswerTypes {

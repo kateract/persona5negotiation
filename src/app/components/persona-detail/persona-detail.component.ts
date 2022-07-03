@@ -12,7 +12,7 @@ import { Location } from '@angular/common';
 export class PersonaDetailComponent implements OnInit, OnChanges {
   @Input() persona: Persona;
   @Input() edit: boolean;
-  @Input() id: string;
+  @Input() id: number;
   public PersonaTypes = PersonaTypes;
   public Arcanas = Arcanas;
   public Effectiveness = Effectiveness;
@@ -25,7 +25,7 @@ export class PersonaDetailComponent implements OnInit, OnChanges {
   ngOnInit() {
     if (!this.persona) {
       this.route.paramMap.subscribe(map => {
-        this.id = map.get('id');
+        this.id = parseInt(map.get('id'));
       });
       this.persona = new Persona;
       this.persona.type = PersonaTypes.Gloomy;

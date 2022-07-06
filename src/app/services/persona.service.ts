@@ -1,37 +1,38 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { Persona, DamageEffectiveness } from '../models/persona';
 import { Observable, Subject, forkJoin } from 'rxjs';
 import { MessageService } from './message.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { BASE_API_URL } from '../app.module';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class PersonaService {
-  private personasUrl = 'http://localhost:3000/personas';
-  private damageEffUrl = 'http://localhost:3000/damage-effectivenesses';
+  private personasUrl = this.baseApiUrl + 'api/Persona';
+  private damageEffUrl = this.baseApiUrl + 'api/DamageEffectiveness';
   public updated = new Subject<any>();
   getPersonas(): Observable<Persona[]> {
-    return this.http.get<Persona[]>(`${this.personasUrl}/?filter[include][][relation]=damageEffectiveness`);
+    return this.http.get<Persona[]>(`${this.personasUrl}/`);
   }
 
   getPersona(id: number): Observable<Persona> {
-    return this.http.get<Persona>(`${this.personasUrl}/${id}/?filter[include][][relation]=damageEffectiveness`);
+    return this.http.get<Persona>(`${this.personasUrl}/${id}/`);
   }
 
   addPersona(persona: Persona): Observable<Persona> {
     return new Observable(observer => {
       let de = persona.damageEffectiveness;
-      delete persona.damageEffectiveness;
+//      delete persona.damageEffectiveness;
       this.http.post<Persona>(this.personasUrl, persona).subscribe(p => {
-        de.personaId = p.id;
-        de.id = null;
-        this.addDamageEffectiveness(de).subscribe(d => {
-          p.damageEffectiveness = d;
+//        de.personaId = p.id;
+ //       de.id = null;
+//        this.addDamageEffectiveness(de).subscribe(d => {
+//          p.damageEffectiveness = d;
           observer.next(p);
           observer.complete();
-        });
+ //       });
       });
     });
   }
@@ -39,15 +40,16 @@ export class PersonaService {
   savePersona(persona: Persona): Observable<Persona> {
     console.log(JSON.stringify(persona));
     return new Observable(observer => {
-      let de = persona.damageEffectiveness;
-      delete persona.damageEffectiveness;
+      //let de = persona.damageEffectiveness;
+      //delete persona.damageEffectiveness;
       this.http.put<Persona>(`${this.personasUrl}/${persona.id}`, persona).subscribe(p => {
-        persona.damageEffectiveness.personaId = p.id;
-        this.saveDamageEffectiveness(de).subscribe(d => {
-          p.damageEffectiveness = d;
-          observer.next(p);
-          observer.complete();
-        });
+        // persona.damageEffectiveness.personaId = p.id;
+        // this.saveDamageEffectiveness(de).subscribe(d => {
+        //   p.damageEffectiveness = d;
+
+        // });
+        observer.next(p);
+        observer.complete();
       });
     });
   }
@@ -66,6 +68,7 @@ export class PersonaService {
 
   constructor(
     private messageService: MessageService,
-    private http: HttpClient
+    private http: HttpClient,
+    @Inject(BASE_API_URL) private baseApiUrl: string 
   ) { }
 }

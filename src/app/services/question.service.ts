@@ -1,21 +1,23 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { Question, Answer } from '../models/question';
 import { Observable, forkJoin } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { BASE_API_URL } from '../app.module';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class QuestionService {
-  private questionUrl = 'http://localhost:3000/questions';
-  private answerUrl = 'http://localhost:3000/answers';
+  private questionUrl = this.baseApiUrl + 'api/Question';
+  private answerUrl =  this.baseApiUrl + 'api/Answer';
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    @Inject(BASE_API_URL) private baseApiUrl: string
   ) { }
 
   getQuestions(): Observable<Question[]> {
-    this.http.get<Question[]>(`${this.questionUrl}/?filter[include][][relation]=answers`).subscribe(questions => {
+    this.http.get<Question[]>(`${this.questionUrl}/`).subscribe(questions => {
       questions.forEach(q => {
         q.answers.forEach(a => {
           console.log(`saving answer : ${JSON.stringify(a)}`);
@@ -23,12 +25,12 @@ export class QuestionService {
         });
       });
     });
-    return this.http.get<Question[]>(`${this.questionUrl}/?filter[include][][relation]=answers`);
+    return this.http.get<Question[]>(`${this.questionUrl}/`);
   }
 
   getQuestion(id: number): Observable<Question> {
     console.log(`getting question: ${id}`);
-    return this.http.get<Question>(`${this.questionUrl}/${id}/?filter[include][][relation]=answers`);
+    return this.http.get<Question>(`${this.questionUrl}/${id}/`);
   }
 
   addQuestion(question: Question): Observable<Question> {

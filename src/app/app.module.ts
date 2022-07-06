@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA, InjectionToken } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -16,6 +16,8 @@ import { QuestionFilterPipe } from './pipes/question-filter.pipe';
 import { EditItemComponent } from './components/edit-item/edit-item.component';
 import { PersonaFilterPipe } from './pipes/persona-filter.pipe';
 import { AnswerTypesComponent } from './components/answer-types/answer-types.component';
+
+export const BASE_API_URL = new InjectionToken('string')
 
 @NgModule({
   declarations: [
@@ -38,7 +40,9 @@ import { AnswerTypesComponent } from './components/answer-types/answer-types.com
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    {provide: BASE_API_URL, useValue: 'https://localhost:7242/'}
+  ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

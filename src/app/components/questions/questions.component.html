@@ -12,7 +12,7 @@
       <li class='question' *ngFor='let question of questions | questionFilter : searchString'>{{question.text}} <a routerLink="/edit/question/{{question.id}}">Edit</a>
         <ol>
           <li class='answer' *ngFor='let answer of question.answers'>
-            <div [class]='getClass(answer.types)'>{{answer.text}} ({{answer.type}})
+            <div [class]='getClass(answer.types)'>{{answer.text}} ({{answer.types.join(', ')}})
               <!--<app-answer-types [answer]=answer></app-answer-types>-->
             </div>
           </li>

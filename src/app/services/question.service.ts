@@ -36,15 +36,12 @@ export class QuestionService {
   addQuestion(question: Question): Observable<Question> {
     console.log(question);
     return new Observable(observer => {
-      let answers = question.answers;
-      delete question.answers;
       console.log(question);
       this.http.post<Question>(this.questionUrl, question).subscribe(q => {
-        forkJoin(this.addAnswers(q.id, answers)).subscribe(a => {
-          q.answers = a;
+
           observer.next(q);
           observer.complete();
-        });
+
       });
     });
   }
@@ -61,14 +58,9 @@ export class QuestionService {
 
   saveQuestion(question: Question): Observable<Question> {
     return new Observable(observer => {
-      let answers = question.answers;
-      delete question.answers;
       this.http.put<Question>(`${this.questionUrl}/${question.id}`, question).subscribe((q: Question) => {
-        forkJoin(this.saveAnswers(answers)).subscribe(a => {
-          q.answers = a;
           observer.next(q);
           observer.complete();
-        });
       });
     });
   }

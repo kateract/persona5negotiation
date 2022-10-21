@@ -103,7 +103,8 @@ export enum Effectiveness {
   Strong = 'Strong',
   Weak = 'Weak',
   Null = 'Null',
-  Drain = 'Drain'
+  Drain = 'Drain',
+  Repel = 'Repel'
 }
 
 export namespace Effectiveness {
